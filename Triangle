@@ -1,0 +1,27 @@
+var dis = 600;
+
+function setup() {
+  createCanvas(600, 600);
+  noStroke();
+  fill(50);
+}
+
+function draw() {
+  background('black');
+  divide(width / 2 - dis / 2, height / 2 + dis * sqrt(3) / 4, dis, 1, floor(map(mouseY , 2, width, 1, 10)));
+}
+
+function divide(x, y, l, lvl, max) {
+  if (lvl == max) {
+    tri(x, y, l);
+  } else {
+    divide(x, y, l / 2, lvl + 1, max);
+    divide(x + l / 2, y, l / 2, lvl + 1, max);
+    divide(x + l / 4, y - l * sqrt(3) / 4, l / 2, lvl + 1, max);
+  }
+}
+function tri(x, y, l) {
+  fill('white');
+  
+  triangle(x, y, x + l / 2, y - l * sqrt(3) / 2, x + l, y);
+}
